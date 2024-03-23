@@ -1,0 +1,21 @@
+Ejercicio 1)
+
+En Java, el operador == cuando se utiliza con objetos de tipo String compara las referencias de los objetos, no sus contenidos. Por lo tanto, en el código proporcionado, la comparación s != "1000" nunca será verdadera, incluso cuando s contenga el valor "1000", porque los objetos s y el literal "1000" se almacenan en ubicaciones de memoria diferentes.
+
+Ejercicio 2)
+
+En el primer codigo la sentencia que se ejecuta como resultado del if es "True". Esto se debe a que en Java, las cadenas literales (como "Hola") se almacenan en un área especial de la memoria llamada "String pool" y, cuando se crea una nueva cadena con el mismo valor literal, Java reutiliza la referencia al objeto ya existente en el "String pool". Por lo tanto, s1 y s2 apuntan al mismo objeto en el "String pool", y la comparación con == devuelve true.
+
+En el segundo fragmento de código la sentencia que se ejecuta como resultado del if es "False". Esto se debe a que al utilizar new String("Hola"), se crea explícitamente un nuevo objeto String en el heap, incluso si hay una cadena con el mismo valor literal en el "String pool". Por lo tanto, s1 y s2 apuntan a diferentes objetos en la memoria, y la comparación con == devuelve false.
+
+Para corregir el código del Ejercicio #1 y obtener el resultado esperado, podrías utilizar el método intern() de la clase String para asegurarte de que s1 haga referencia al objeto en el "String pool". Aquí tienes la versión corregida:
+
+String s1 = new String("Hola").intern(); // Utilizar intern() para obtener la referencia del "String pool"
+String s2 = "Hola"; 
+if (s1 == s2) { 
+   System.out.println("True"); 
+} else { 
+   System.out.println("False"); 
+}
+
+Con esta corrección, s1 hace referencia al objeto en el "String pool" que contiene el valor "Hola", y la comparación con == devuelve true.
