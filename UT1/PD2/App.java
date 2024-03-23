@@ -1,6 +1,7 @@
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
+import java.util.Random;
 
 public class App {
 
@@ -12,6 +13,12 @@ public class App {
     private JButton button;
     private JLabel text;
     private JLabel text_word_amount;
+    private int word_amount;
+
+    Random random = new Random();
+    public void contarPalabras(){
+        word_amount = random.nextInt(999);
+    }
 
     public App() {
 
@@ -19,7 +26,7 @@ public class App {
     
         // Configurar el frame
         frame.setTitle("Saludo App");
-        frame.setSize(400, 200);
+        frame.setSize(400, 250);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setLayout(new GridLayout(0, 1));
         
@@ -30,6 +37,7 @@ public class App {
 
         // Agregar componentes al panel
         panel_options = new JPanel();
+        panel_options.setBorder(BorderFactory.createEmptyBorder(0,30, 30, 30));
         panel_options.setLayout(new GridLayout(0, 1));
 
         // Agregar componentes al panel
@@ -68,10 +76,30 @@ public class App {
         
         panel_top.add(button, BorderFactory.createEmptyBorder(30,30, 30, 30));
 
+        
+
         // Crear botones de radio
         JRadioButton radioButton1 = new JRadioButton("Opción 1");
+        radioButton1.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                contarPalabras();
+                text_word_amount.setText("la cantidad de palabras es: " + word_amount);
+            }
+        });
         JRadioButton radioButton2 = new JRadioButton("Opción 2");
+        radioButton2.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                contarPalabras();
+                text_word_amount.setText("la cantidad de palabras es: " + word_amount);
+            }
+        });
         JRadioButton radioButton3 = new JRadioButton("Opción 3");
+        radioButton3.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                contarPalabras();
+                text_word_amount.setText("la cantidad de palabras es: " + word_amount);
+            }
+        });
         
         // Crear un ButtonGroup
         ButtonGroup group = new ButtonGroup();
@@ -86,9 +114,10 @@ public class App {
         panel_options.add(radioButton2);
         panel_options.add(radioButton3);
 
-        text_word_amount = new JLabel("la cantidad de palabras es: ");
+        text_word_amount = new JLabel("la cantidad de palabras es: " + word_amount);
         // defino posicion y tamano 
         text.setBounds(10,30,260,20);
+        
         panel_bottom.add(text_word_amount);
 
         
