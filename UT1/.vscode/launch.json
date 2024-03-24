@@ -6,6 +6,32 @@
     "configurations": [
         {
             "type": "java",
+            "name": "pd10",
+            "request": "launch",
+            "mainClass": "com.example.pd10",
+            "projectName": "pd10"
+        },
+        {
+            "type": "java",
+            "name": "Principal",
+            "request": "launch",
+            "mainClass": "com.example.Principal",
+            "projectName": "pd10"
+        },
+        {
+            "type": "java",
+            "name": "Principal",
+            "request": "launch",
+            "mainClass": "Principal"
+        },
+        {
+            "type": "java",
+            "name": "UtilMath",
+            "request": "launch",
+            "mainClass": "TA2.UtilMath"
+        },
+        {
+            "type": "java",
             "name": "mulVectores",
             "request": "launch",
             "mainClass": "com.example.mulVectores",
