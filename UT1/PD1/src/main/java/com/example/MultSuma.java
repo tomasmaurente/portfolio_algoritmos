@@ -73,6 +73,4 @@ public class MultSuma
         System.out.println("Should be 16.88714984 and is: " + convStr(result));
 
     }
-    
-
 }
