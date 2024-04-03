@@ -1,3 +1,5 @@
+package com.example;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
@@ -14,58 +16,60 @@ public class App {
     private JLabel text;
     private JLabel text_word_amount;
     private int word_amount;
-
     Random random = new Random();
-    public void contarPalabras(){
-        word_amount = random.nextInt(999);
+
+    /*
+     * debido a que no me pude contactar con los compañeros para obtener el contadorPalabras hecho en clase utilizo un random
+     */
+    public void contarPalabras() {
+        word_amount = random.nextInt(200);
     }
 
     public App() {
 
         frame = new JFrame();
-    
+
         // Configurar el frame
         frame.setTitle("Saludo App");
         frame.setSize(400, 250);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setLayout(new GridLayout(0, 1));
-        
+
         // Agregar componentes al panel
         panel_top = new JPanel();
-        panel_top.setBorder(BorderFactory.createEmptyBorder(30,30, 30, 30));
+        panel_top.setBorder(BorderFactory.createEmptyBorder(30, 30, 30, 30));
         panel_top.setLayout(new FlowLayout());
 
         // Agregar componentes al panel
         panel_options = new JPanel();
-        panel_options.setBorder(BorderFactory.createEmptyBorder(0,30, 30, 30));
+        panel_options.setBorder(BorderFactory.createEmptyBorder(0, 30, 30, 30));
         panel_options.setLayout(new GridLayout(0, 1));
 
         // Agregar componentes al panel
         panel_bottom = new JPanel();
-        panel_bottom.setBorder(BorderFactory.createEmptyBorder(0,30, 30, 30));
+        panel_bottom.setBorder(BorderFactory.createEmptyBorder(0, 30, 30, 30));
         panel_bottom.setLayout(new FlowLayout());
         panel_bottom.add(panel_options);
-
 
         // Agregar paneles al frame
         frame.add(panel_top, BorderLayout.CENTER);
         frame.add(panel_bottom, BorderLayout.CENTER);
 
         text = new JLabel("Ingrese su nombre: ");
-        // defino posicion y tamano 
-        text.setBounds(10,30,260,20);
+        // defino posicion y tamano
+        text.setBounds(10, 30, 260, 20);
         panel_top.add(text);
-        
+
         textField = new JTextField();
         // defino posicion
-        textField.setBounds(10,50,260,20);
+        textField.setBounds(10, 50, 260, 20);
         // defino tamano
         textField.setPreferredSize(new Dimension(100, 20));
         panel_top.add(textField);
 
         button = new JButton("Saludar");
-        // defino posicion y tamano 
-        button.setBounds(80,90,100,20);
+        // defino posicion y tamano
+        button.setBounds(80, 90, 100, 20);
         // Agregar un listener al botón
         button.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
@@ -73,62 +77,58 @@ public class App {
                 JOptionPane.showMessageDialog(null, "¡Hola, " + nombre + "!");
             }
         });
-        
-        panel_top.add(button, BorderFactory.createEmptyBorder(30,30, 30, 30));
 
-        
+        panel_top.add(button, BorderFactory.createEmptyBorder(30, 30, 30, 30));
 
         // Crear botones de radio
         JRadioButton radioButton1 = new JRadioButton("Opción 1");
         radioButton1.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                contarPalabras();
+                contarPalabras(textField.getText());
                 text_word_amount.setText("la cantidad de palabras es: " + word_amount);
             }
         });
         JRadioButton radioButton2 = new JRadioButton("Opción 2");
         radioButton2.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                contarPalabras();
+                contarPalabras(textField.getText());
                 text_word_amount.setText("la cantidad de palabras es: " + word_amount);
             }
         });
         JRadioButton radioButton3 = new JRadioButton("Opción 3");
         radioButton3.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                contarPalabras();
+                contarPalabras(textField.getText());
                 text_word_amount.setText("la cantidad de palabras es: " + word_amount);
             }
         });
-        
+
         // Crear un ButtonGroup
         ButtonGroup group = new ButtonGroup();
-        
+
         // Agregar los botones de radio al grupo
         group.add(radioButton1);
         group.add(radioButton2);
         group.add(radioButton3);
-        
+
         // Agregar los botones de radio al panel de opciones
         panel_options.add(radioButton1);
         panel_options.add(radioButton2);
         panel_options.add(radioButton3);
 
         text_word_amount = new JLabel("la cantidad de palabras es: " + word_amount);
-        // defino posicion y tamano 
-        text.setBounds(10,30,260,20);
-        
+        // defino posicion y tamano
+        text.setBounds(10, 30, 260, 20);
+
         panel_bottom.add(text_word_amount);
 
-        
         frame.setVisible(true);
 
     }
 
-    
     public static void main(String[] args) {
-        
+
         new App();
-    
+
     }
 }
