@@ -117,7 +117,7 @@ public class Lista<T> implements ILista<T> {
             return resultado;
         } else {
             Nodo<T> temp = primero;
-            while (temp.getSiguiente() != null) {
+            while (temp != null) {
                 resultado++;
                 temp = temp.getSiguiente();
             }

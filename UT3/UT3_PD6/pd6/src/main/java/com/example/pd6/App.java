@@ -4,7 +4,7 @@ package com.example.pd6;
  * 1.  Descargar el archivo “suc1.txt”, guardarlo en el directorio raíz de su implementación como “sucursales.txt” y 
         ejecutar el programa, emitiendo por consola la cantidad de elementos y la lista de ciudades contenida en la 
         estructura. La cantidad de elementos es: 
-        
+
         b) 105
  
 2.  Eliminar la ciudad “Chicago”- listar nuevamente el conjunto de sucursales. Dada la ciudad ·“Hong Kong”, la 
@@ -94,6 +94,10 @@ public class App {
         }
 
         System.out.println("Las sucursales actuales son: " + registroSucursales.imprimirSucursalSeparador(";_"));
+
+        System.out.println();
+        System.out.println();
+        System.out.println();
 
     }
 }
