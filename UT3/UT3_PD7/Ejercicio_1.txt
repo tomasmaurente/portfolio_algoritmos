@@ -1,0 +1,82 @@
+Desarrolla  los  algoritmos  para  implementar  las  operaciones  de  Union    e  Intersección  sobre  el  TDA  LISTA, 
+utilizado para representar un CONJUNTO. Los conjuntos de entrada se encuentran ordenados.  
+Debes seguir las normas para desarrollo de algoritmos en seudocódigo brindadas en el curso: 
+• especificación en lenguaje natural,  
+• pre y post condiciones,  
+• seudocódigo y  
+• especificación de casos de prueba.  
+• Analiza detalladamente el orden del tiempo de ejecución de estos algoritmos.
+
+
+Union
+
+    Primero se toman ambas listas (L1 y L2) y se recorre una de ellas indiscriminadamente, luego se crea una tercera lista (L3) que contendra la 
+    union de L1 y L2. Primero se iguala L2 a L3 para que todos los elementos de L2 esten en L3, luego, cuando se inicia el recorrido de L1, 
+    se itera sobre cada elemento y se ejecuta la siguiente pregunta:
+    el elemento se encuentra en L2? Si no se encuentra, el nuevo elemento es agregado a L3, si sí encuentra simplemente se procede al 
+    siguiente elemento de L1.
+
+    Precondiciones
+    - Ambas listas deben contener elementos de tipos compatibles (que tengas por lo menos una interfaz en comun)
+    - No deben haber elementos duplicados en ninguna de las listas
+    - No se deben introducir nulls al metodo
+
+    Postcondiciones
+    - El metodo debe devolver una lista con todos los elementos de L1 y L2 
+    - En la lista devuelta no deben haber elementos duplicados
+    - Si se modifica un elemento de L1 tambien debe modificarse el mismo elemento en L3
+
+    fun union(Lista L1, Lista L2)
+        Lista L3 = L2
+        PARACADA (elemento en L1) HACER
+            SI (elemento NO esta en L3) HACER
+                L3.agregar(elemento)
+            FIN SI
+        FIN PARACADA
+        DEVOLVER L3
+    FIN
+
+    Casos de prueba
+
+    1) Dos listas completas -> deben aparecer todos los elementos de ambas listas
+    2) Una lista llena y otra vacia -> la salida debe ser igual que la lista llena
+    3) Ambas listas vacias -> La salida debe ser una lista vacias
+    4) Luego de obtener el resultado al modificarse un objeto, este tambien debe modificarse en su lista original
+
+    El tiempo de ejecucion es LINEAL.
+
+Intersección
+
+    Primero se toman ambas listas (L1 y L2) y se recorre una de ellas indiscriminadamente, luego se crea una tercera lista (L3) que contendra la 
+    interseccion de L1 y L2. Cuando se inicia el recorrido de L1, se itera sobre cada elemento y se ejecuta la siguiente pregunta:
+    el elemento se encuentra en L2? Si se encuentra, el nuevo elemento es agregado a L3, si no encuentra simplemente se procede al 
+    siguiente elemento de L1.
+
+    Precondiciones
+    - Ambas listas deben contener elementos de tipos compatibles (que tengas por lo menos una interfaz en comun)
+    - No deben haber elementos duplicados en ninguna de las listas
+    - No se deben introducir nulls al metodo
+
+    Postcondiciones
+    - El metodo debe devolver una lista con todos los elementos que se encuentren en L1 y L2 
+    - En la lista devuelta no deben haber elementos duplicados
+    - Si se modifica un elemento de L1 tambien debe modificarse el mismo elemento en L3
+
+    fun interseccion(Lista L1, Lista L2)
+        Lista L3 = Nueva Lista Vacia
+        PARACADA (elemento en L1) HACER
+            SI (elemento esta en L2) HACER
+                L3.agregar(elemento)
+            FIN SI
+        FIN PARACADA
+        DEVOLVER L3
+    FIN
+
+    Casos de prueba
+
+    1) Dos listas completas -> deben aparecer todos los elementos que esten en ambas listas
+    2) Una lista llena y otra vacia -> la salida debe ser vacia
+    3) Ambas listas vacias -> La salida debe ser una lista vacias
+    4) Luego de obtener un resultado al modificarse un objeto, este tambien debe modificarse en su lista original
+
+    El tiempo de ejecucion es LINEAL.

@@ -62,18 +62,31 @@ public class Lista<T> implements ILista<T> {
      * @return True en caso de que la eliminaci�n haya sido efectuada con �xito.
      */
     public boolean eliminar(Comparable clave){
-        Nodo nodoAux = first;
-        if (nodoAux == null) return true;
-        if(nodoAux.compareTo(clave) == 0){
-            first = first.getSiguiente();
+        if (esVacia()) {
+            return false;
+        }
+        if (first.getSiguiente() == null) {
+            if (first.getEtiqueta().equals(clave)) {
+                first = null;
+                return true;
+            }
+        }
+        Nodo<T> aux = first;
+        if (aux.getEtiqueta().compareTo(clave) == 0) {
+            //Eliminamos el primer elemento
+            Nodo<T> temp1 = aux;
+            Nodo<T> temp = aux.getSiguiente();
+            first = temp;
             return true;
         }
-        while (nodoAux.getSiguiente() != null) {
-            if (nodoAux.getSiguiente().compareTo(clave) == 0){
-                nodoAux.setSiguiente(nodoAux.getSiguiente().getSiguiente());
+        while (aux.getSiguiente() != null) {
+            if (aux.getSiguiente().getEtiqueta().equals(clave)) {
+                Nodo<T> temp = aux.getSiguiente();
+                aux.setSiguiente(temp.getSiguiente());
                 return true;
-            } 
-            nodoAux = nodoAux.getSiguiente();
+
+            }
+            aux = aux.getSiguiente();
         }
         return false;
     }

@@ -1,6 +1,6 @@
-package com.example.pd6;
+package com.example;
 
-import com.example.pd6.interfaces.*;
+import com.example.interfaces.*;
 
 public class Lista<T> implements ILista<T> {
 
@@ -107,6 +107,7 @@ public class Lista<T> implements ILista<T> {
     @Override
     public String imprimir(String separador) {
         StringBuilder resultado = new StringBuilder();
+        resultado.append(separador);
         if (primero == null) {
             return null;
         } else {

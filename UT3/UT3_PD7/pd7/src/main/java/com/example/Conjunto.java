@@ -1,19 +1,58 @@
-package com.example.pd6;
+package com.example;
 
-import com.example.pd6.interfaces.*;
+import com.example.interfaces.IConjunto;
 
-public class Lista<T> implements ILista<T> {
+public class Conjunto<T> implements IConjunto<T> {
 
     private Nodo<T> primero;
 
-    public Lista() {
+    public Conjunto() {
         primero = null;
     }
 
+    public Conjunto<T> union(IConjunto<T> otroConjunto){
+        Conjunto newConjunto = new Conjunto<>();
+
+        Nodo aux = (Nodo) otroConjunto.getPrimero();
+
+        while (aux != null) {
+            newConjunto.insertar(aux.getEtiqueta(),aux.getDato());
+            aux = aux.getSiguiente();
+        }
+
+        aux = primero;
+        while (aux != null) {
+            if(otroConjunto.buscar(aux.getEtiqueta()) == null){
+                newConjunto.insertar(aux.getEtiqueta(),aux.getDato());
+            }
+            aux = aux.getSiguiente();
+        }
+        
+        return newConjunto;
+    }
+
+    public Conjunto<T> interseccion(IConjunto<T> otroConjunto){
+        Conjunto newConjunto = new Conjunto<>(); 
+        Nodo aux = primero;
+        while (aux != null) {
+            if(otroConjunto.buscar(aux.getEtiqueta()) != null){
+                newConjunto.insertar(aux.getEtiqueta(),aux.getDato());
+            }
+            aux = aux.getSiguiente();
+        }
+        return newConjunto;
+    }
+
+    
     @Override
     public void setPrimero(Nodo<T> unNodo) {
         unNodo.setSiguiente(primero);
         primero = unNodo;
+    }
+
+    @Override
+    public Nodo<T> getPrimero(){
+        return this.primero;
     }
 
     @Override
@@ -107,6 +146,7 @@ public class Lista<T> implements ILista<T> {
     @Override
     public String imprimir(String separador) {
         StringBuilder resultado = new StringBuilder();
+        resultado.append(separador);
         if (primero == null) {
             return null;
         } else {
@@ -143,4 +183,7 @@ public class Lista<T> implements ILista<T> {
             return false;
         }
     }
+
+
+
 }
