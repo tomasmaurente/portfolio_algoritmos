@@ -1,0 +1,33 @@
+
+Precondiciones
+
+    - Todos los elementos que se quieran agregar a la cola deben ser de un mismo tipo
+    
+Postcondiciones
+
+    - Cada elemento que se quite debe ser el primero que se haya agregado
+    - Una vez quitado un elemento, este debe dejar de existir en la cola
+
+
+PoneEnCola:
+
+PoneEnCola(unElemento)
+    Si (fin + 1) modulo tamañoVector = inicio entonces
+        Escribir "La cola está llena, no se puede agregar más elementos"
+    Sino
+        cola[fin] ← unElemento
+        fin ← (fin + 1) modulo tamañoVector
+    Fin Si
+Fin Procedimiento
+
+Quita de cola:
+
+Función QuitaDeCola() devuelve unElemento
+    Si inicio = fin entonces
+        Escribir "La cola está vacía, no se puede quitar ningún elemento"
+    Sino
+        unElemento ← cola[inicio]
+        inicio ← (inicio + 1) modulo tamañoVector
+        Devolver unElemento
+    Fin Si
+Fin Función
