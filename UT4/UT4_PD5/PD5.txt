@@ -1,0 +1,268 @@
+De acuerdo a los lineamientos para desarrollo de algoritmos en seudocódigo presentados en
+clase, desarrolla (SIGUIENDO LOS PASOS EN EL ORDEN INDICADO):
+
+1.      Descripción en lenguaje natural del algoritmo solicitado
+
+2.      Identificación de precondiciones y postcondiciones correspondientes
+
+3.      Descripción en lenguaje natural de los casos de prueba correspondientes a cada
+        operación
+
+4.      Escritura del algoritmo en seudocódigo formal (RECUERDA ESCRIBIR CORRECTAMENTE
+        LAS FIRMAS DE LAS OPERACIONES)
+
+5.      Análisis detallado del orden del tiempo de ejecución del algoritmo
+
+
+    *** Obtener la menor clave del árbol. ***
+1. Descripción en lenguaje natural del algoritmo solicitado
+
+Se recorrera el arbol siempre en direccion al hijo izquierdo, una vez que no se hayen mas hijos izquierdos, una vez llegado a este punto
+se devolvera el nodo en el que este el metodo.
+
+2. Identificación de precondiciones y postcondiciones correspondientes:
+
+Precondiciones:
+- Devolvera null si no existe una raiz
+- El arbol debera ser de busqueda (estar ordenado)
+- Las claves de los nodos deben ser numericas
+
+Postcondiciones
+- Devolvera el nodo de menor clave del arbol, null si no hay raiz
+- No afectara al arbol
+
+3. Descripción en lenguaje natural de los casos de prueba correspondientes a cada operación:
+- Se armara un arbol con solo hijos derechos y debera devolver la raiz
+- Se armara un arbol solo con hijos izquierdos y debe devolver el mas pequeño
+- Se creara un arbol vacio y debera devolver null
+- Se armara un arbol complejo y debera devolver la clave mas pequeña
+
+4. Escritura del algoritmo en seudocódigo formal:
+
+TElementoABB obtenerMenorClave()
+Inicio
+    SI (hijoIz <> nulo) HACER
+        DEVOLVER hijoIz.obtenerMenorClave()
+    FIN SI
+    DEVOLVER this
+FIN
+
+5. Análisis detallado del orden del tiempo de ejecución del algoritmo:
+Este algoritmo es O(N)
+
+
+
+    *** Obtener la mayor clave del árbol ***
+
+1. Descripción en lenguaje natural del algoritmo solicitado:
+Este algoritmo busca la clave más grande en un árbol binario de búsqueda recorriendo siempre hacia el hijo derecho hasta encontrar un nodo que no tenga hijo derecho. Luego devuelve dicho nodo.
+
+2. Identificación de precondiciones y postcondiciones correspondientes:
+Precondiciones:
+
+Devolverá null si no existe una raíz.
+El árbol deberá ser un árbol de búsqueda (ordenado).
+Las claves de los nodos deben ser numéricas.
+Postcondiciones:
+
+Devolverá el nodo de mayor clave del árbol, o null si no hay raíz.
+No afectará la estructura del árbol.
+
+3. Descripción en lenguaje natural de los casos de prueba correspondientes a cada operación:
+Se construirá un árbol con solo hijos izquierdos y deberá devolver la raíz.
+Se construirá un árbol solo con hijos derechos y deberá devolver el nodo con la clave más grande.
+Se creará un árbol vacío y deberá devolver null.
+Se construirá un árbol complejo y deberá devolver el nodo con la clave más grande.
+4. Escritura del algoritmo en seudocódigo formal:
+
+FUNCION obtenerMayorClave() -> TElementoABB
+INICIO
+    SI (hijoDer <> nulo) ENTONCES
+        DEVOLVER hijoDer.obtenerMayorClave()
+    FIN SI
+    DEVOLVER this
+FIN
+
+5. Análisis detallado del orden del tiempo de ejecución del algoritmo:
+Este algoritmo también es de complejidad O(N), ya que en el peor de los casos deberá recorrer todos los nodos del árbol si está desbalanceado hacia la izquierda.
+
+    *** Obtener la clave inmediata anterior a una clave dada ***
+
+1. Descripción en lenguaje natural del algoritmo solicitado:
+Este algoritmo busca la clave inmediata anterior a una clave dada en un árbol binario de búsqueda. Comienza desde la raíz y realiza un recorrido en profundidad hasta encontrar el nodo con la clave más grande que sea menor que la clave dada.
+El recorrido se hará buscando el primer nodo con una clave más pequeña y luego la mas grande dentro de la clave mas pequeña anteriormente mencionada.  
+
+2. Identificación de precondiciones y postcondiciones correspondientes:
+
+Precondiciones:
+Devolverá null si no existe una raíz.
+El árbol deberá ser un árbol de búsqueda (ordenado).
+Las claves de los nodos deben ser numéricas.
+
+Postcondiciones:
+Devolverá el nodo con la clave inmediata anterior a la clave dada, o null si no hay tal nodo.
+No afectará la estructura del árbol.
+
+3. Descripción en lenguaje natural de los casos de prueba correspondientes a cada operación:
+Se creará un árbol con claves específicas y se buscará la clave inmediata anterior a una clave dada.
+Se creará un árbol vacío y se intentará buscar la clave inmediata anterior a una clave dada.
+
+4. Escritura del algoritmo en seudocódigo formal:
+FUNCION obtenerClaveAnterior(clave: Entero) -> TElementoABB
+INICIO
+    SI (clave <= this.clave) ENTONCES
+        SI (hijoIz <> nulo) ENTONCES
+            DEVOLVER hijoIz.obtenerClaveAnterior(clave)
+        FIN SI
+    SINO
+        SI (hijoDer <> nulo) ENTONCES
+            SI (hijoDer.clave <= clave) ENTONCES
+                DEVOLVER hijoDer.obtenerClaveAnterior(clave)
+            SINO
+                DEVOLVER this
+            FIN SI
+        SINO 
+            DEVOLVER this
+        FIN SI
+    FIN SI
+    DEVOLVER null
+FIN
+
+5. Análisis detallado del orden del tiempo de ejecución del algoritmo:
+El tiempo de ejecución de este algoritmo depende de la altura del árbol. En un árbol balanceado, la complejidad será O(log N), pero en un árbol desbalanceado podría ser hasta O(N), siendo N el número de nodos del árbol.
+
+
+    *** Obtener la cantidad de nodos de un nivel dado ***
+
+1. Descripción en lenguaje natural del algoritmo solicitado:
+Este algoritmo cuenta la cantidad de nodos en un nivel específico del árbol binario de búsqueda. Realiza un recorrido en profundidad por el árbol, llevando un contador de los niveles visitados y aumentándolo cada vez que desciende un nivel. Cuando alcanza el nivel dado, cuenta los nodos en ese nivel.
+
+2. Identificación de precondiciones y postcondiciones correspondientes:
+Precondiciones:
+
+Devolverá 0 si no existe una raíz.
+El nivel dado debe ser mayor o igual a 1.
+El árbol deberá ser un árbol de búsqueda (ordenado).
+Postcondiciones:
+
+Devolverá la cantidad de nodos en el nivel dado.
+No afectará la estructura del árbol.
+
+3. Descripción en lenguaje natural de los casos de prueba correspondientes a cada operación:
+Se creará un árbol con nodos en diferentes niveles y se contará la cantidad de nodos en un nivel específico.
+Se creará un árbol vacío y se intentará contar la cantidad de nodos en un nivel específico.
+
+4. Escritura del algoritmo en seudocódigo formal:
+
+FUNCION contarNodosEnNivel(nivel: Entero) -> Entero
+INICIO
+    SI (nivel < 1) ENTONCES
+        DEVOLVER 0
+    SINO
+        DEVOLVER contarNodosEnNivelAux(1, nivel)
+    FIN SI
+FIN
+
+contarNodosEnNivelAux(nivelActual: Entero, nivelBuscado: Entero) -> Entero
+INICIO
+    SI (nivelActual = nivelBuscado) ENTONCES
+        DEVOLVER 1
+    SINO
+        DEVOLVER contarNodosEnNivelAux(nivelActual + 1, nivelBuscado) + contarNodosEnNivelAux(nivelActual + 1, nivelBuscado)
+    FIN SI
+FIN
+
+5. Análisis detallado del orden del tiempo de ejecución del algoritmo:
+El tiempo de ejecución de este algoritmo depende de la altura del árbol. En un árbol balanceado, la complejidad será O(log N), pero en un árbol desbalanceado podría ser hasta O(N), siendo N el número de nodos del árbol.
+
+
+    *** Listar todas las hojas cada una con su nivel ***
+
+1. Descripción en lenguaje natural del algoritmo solicitado:
+Este algoritmo lista todas las hojas del árbol binario de búsqueda junto con su nivel correspondiente. Realiza un recorrido en profundidad por el árbol, llevando un contador de los niveles visitados. Cuando encuentra un nodo hoja, lo agrega a una lista junto con su nivel.
+
+2. Identificación de precondiciones y postcondiciones correspondientes:
+Precondiciones:
+
+Devolverá una lista vacía si no existe una raíz.
+El árbol deberá ser un árbol de búsqueda (ordenado).
+Postcondiciones:
+
+Devolverá una lista de pares (nodo, nivel), donde nodo es una hoja del árbol y nivel es su nivel correspondiente.
+No afectará la estructura del árbol.
+
+3. Descripción en lenguaje natural de los casos de prueba correspondientes a cada operación:
+Se creará un árbol con hojas en diferentes niveles y se listarán todas las hojas junto con su nivel.
+Se creará un árbol vacío y se intentará listar las hojas junto con su nivel.
+
+4. Escritura del algoritmo en seudocódigo formal:
+
+FUNCION listarHojasConNivel() -> Lista de (TElementoABB, Entero)
+INICIO
+    listaHojas <- Lista vacía
+    listarHojasConNivelAux(this, 1, listaHojas)
+    DEVOLVER listaHojas
+FIN
+
+listarHojasConNivelAux(nodo: TElementoABB, nivelActual: Entero, listaHojas: Lista de (TElementoABB, Entero))
+INICIO
+    SI (nodo = nulo) ENTONCES
+        RETORNAR
+    SINO SI (nodo.hijoIz = nulo Y nodo.hijoDer = nulo) ENTONCES
+        listaHojas.agregar((nodo, nivelActual))
+    SINO
+        listarHojasConNivelAux(nodo.hijoIz, nivelActual + 1, listaHojas)
+        listarHojasConNivelAux(nodo.hijoDer, nivelActual + 1, listaHojas)
+    FIN SI
+FIN
+
+5. Análisis detallado del orden del tiempo de ejecución del algoritmo:
+El tiempo de ejecución de este algoritmo depende de la altura del árbol. En un árbol balanceado, la complejidad será O(N), siendo N el número de nodos del árbol. En el peor caso, donde todas las hojas están en el último nivel, el algoritmo recorrerá todos los nodos del árbol.
+
+
+    *** Verificar si el árbol es de búsqueda ***
+
+1. Descripción en lenguaje natural del algoritmo solicitado:
+Este algoritmo verifica si un árbol binario dado es un árbol de búsqueda. Realiza un recorrido en profundidad por el árbol, verificando que para cada nodo, que la clave de su hijo izquierdo sea menor que la clave del nodo, y que la clave de su hijo derecho sea mayor que la clave del nodo.
+
+2. Identificación de precondiciones y postcondiciones correspondientes:
+Precondiciones:
+
+Devolverá true si no existe una raíz.
+El árbol deberá ser un árbol binario.
+Las claves deben ser numericas
+
+Postcondiciones:
+
+Devolverá true si el árbol es un árbol de búsqueda, y false en caso contrario.
+No afectará la estructura del árbol.
+
+3. Descripción en lenguaje natural de los casos de prueba correspondientes a cada operación:
+Se creará un árbol de búsqueda y se verificará si es un árbol de búsqueda.
+Se creará un árbol no ordenado y se verificará si es un árbol de búsqueda.
+
+4. Escritura del algoritmo en seudocódigo formal:
+
+FUNCION esArbolBusquedaAux() -> Booleano
+INICIO
+    SI (nodo = nulo) ENTONCES
+        DEVOLVER verdadero
+    SI (nodo.hijoIz == nulo Y nodo.hijoDer == nulo) ENTONCES
+        DEVOLVER verdadero
+    FIN SI
+    SI (nodo.hijoIz <> nulo) ENTONCES
+        SI (nodo.clave > nodo.hijoIz.clave) ENTONCES
+            DEVOLVER hijoIz.esArbolBusquedaAux() == true
+        SINO
+            DEVOLVER falso
+    FIN SI
+    SI (nodo.hijoDer <> nulo) ENTONCES
+        SI (nodo.clave < nodo.hijoDer.clave) ENTONCES
+            DEVOLVER hijoDer.esArbolBusquedaAux() == true
+        SINO
+            DEVOLVER falso
+    FIN SI
+FIN
+
+5. Análisis detallado del orden del tiempo de ejecución del algoritmo:
+El tiempo de ejecución de este algoritmo depende del número de nodos del árbol. En un árbol balanceado, la complejidad será O(N), siendo N el número de nodos del árbol. En el peor caso, donde el árbol esté desbalanceado, la complejidad podría ser hasta O(N), ya que deberá recorrer todos los nodos del árbol.
