@@ -1,0 +1,167 @@
+Ejercicio #1: Insertar un nuevo Nodo en el Árbol
+
+Descripción en lenguaje natural: El algoritmo debe insertar un nuevo nodo en un árbol binario de búsqueda. Comienza en la raíz del árbol y compara la clave del nuevo nodo con la clave del nodo actual. Si la clave es menor, se mueve al subárbol izquierdo; si es mayor, se mueve al subárbol derecho. Continúa este proceso hasta llegar a un nodo hoja donde se inserta el nuevo nodo.
+
+Precondiciones:
+El árbol debe ser un árbol binario de búsqueda.
+El nuevo nodo debe tener una clave única que no exista en el árbol.
+
+Postcondiciones:
+El árbol contiene el nuevo nodo.
+
+Seudocódigo formal:
+Arbol
+InsertarNodo(NuevoNodo)
+    SI raiz = NULL ENTONCES
+        raiz <- NuevoNodo
+    SINO
+        raiz.InsertarNodo(NuevoNodo)
+    FIN SI
+FIN
+
+Nodo
+InsertarNodo(NuevoNodo)
+    SI NuevoNodo.clave < this.clave ENTONCES
+        SI (hijoIz <> nulo) ENTONCES
+            InsertarNodo(NuevoNodo)
+        SINO
+            hijoIz <- NuevoNodo
+        FIN SI
+    SINO
+        SI (hijoDer <> nulo) ENTONCES
+            InsertarNodo(NuevoNodo)
+        SINO
+            hijoDer <- NuevoNodo
+        FIN SI
+    FIN SI
+FIN ALGORITMO
+
+Análisis detallado del orden del tiempo de ejecución: En un árbol balanceado, el tiempo de ejecución para insertar un nodo es O(log n), donde n es el número de nodos en el árbol. Sin embargo, en el peor caso (cuando el árbol está completamente desbalanceado), el tiempo de ejecución puede ser O(n), donde n es el número de nodos en el árbol.
+
+
+Ejercicio #2: Contar todas las hojas que tiene el Árbol
+
+
+Descripción en lenguaje natural: Este algoritmo cuenta todas las hojas en un árbol binario de búsqueda. Comienza en la raíz y examina cada nodo. Si un nodo es una hoja (es decir, no tiene hijos), se cuenta. Se repite este proceso para todos los nodos en el árbol.
+
+Precondiciones:
+El árbol debe ser un árbol binario de búsqueda.
+
+Postcondiciones:
+Se cuenta el número total de hojas en el árbol.
+
+Seudocódigo formal:
+
+Arbol
+ContarHojas()
+    SI raiz = NULL ENTONCES
+        RETORNAR 0
+    SINO
+        RETORNAR raiz.ContarHojas()
+    FIN SI
+FIN 
+
+Nodo
+ContarHojas() <- int
+    SI hijoIz == NULL Y hijoDer == NULL ENTONCES
+        RETORNAR 1
+    SINO
+        SI hijoIz <> NULL Y hijoDer <> NULL ENTONCES
+            RETORNAR ContarHojas(hijoIz) + ContarHojas(hijoDer)
+        FIN SI
+        SI hijoIz <> NULL ENTONCES
+            RETORNAR ContarHojas(hijoIz)
+        FIN SI
+        SI hijoDer <> NULL ENTONCES
+            RETORNAR ContarHojas(hijoDer)
+        FIN SI
+    FIN SI
+FIN 
+
+Análisis detallado del orden del tiempo de ejecución: El tiempo de ejecución de este algoritmo es O(n), donde n es el número de nodos en el árbol. Esto se debe a que se visita cada nodo una vez para determinar si es una hoja o no.
+Para los siguientes ejercicios, seguiré el mismo formato de descripción y análisis.
+
+
+Ejercicio #3: Calcular la suma de las claves de todos los elementos del árbol
+
+
+Descripción en lenguaje natural: Este algoritmo calcula la suma de las claves de todos los elementos en un árbol binario de búsqueda. Comienza en la raíz y visita cada nodo. En cada nodo, suma la clave del nodo actual y luego recursivamente se mueve al subárbol izquierdo y al subárbol derecho.
+
+Precondiciones:
+El árbol debe ser un árbol binario de búsqueda.
+
+Postcondiciones:
+Se calcula la suma de todas las claves en el árbol.
+
+Seudocódigo formal:
+
+Arbol
+SumarClaves()
+    SI raiz = NULL ENTONCES
+        RETORNAR 0
+    SINO 
+        RETORNAR raiz.SumarClaves()
+    FIN SI
+FIN 
+
+Nodo
+SumarClaves() <- int
+    SI hijoIz == NULL Y hijoDer == NULL ENTONCES
+        RETORNAR this.clave
+    SINO
+        SI hijoIz <> NULL Y hijoDer <> NULL ENTONCES
+            RETORNAR SumarClaves(hijoIz) + SumarClaves(hijoDer) + this.clave
+        FIN SI
+        SI hijoIz <> NULL ENTONCES
+            RETORNAR SumarClaves(hijoIz) + this.clave
+        FIN SI
+        SI hijoDer <> NULL ENTONCES
+            RETORNAR SumarClaves(hijoDer) + this.clave
+        FIN SI
+    FIN SI
+FIN 
+
+Análisis detallado del orden del tiempo de ejecución: El tiempo de ejecución de este algoritmo es O(n), donde n es el número de nodos en el árbol. Esto se debe a que se visita cada nodo una vez para sumar sus claves.
+
+
+Ejercicio #4: Devolver la cantidad de nodos del árbol que se encuentran en un cierto nivel
+
+
+Descripción en lenguaje natural: Este algoritmo cuenta la cantidad de nodos en un nivel específico de un árbol binario de búsqueda. Comienza en la raíz y realiza un recorrido en profundidad (DFS) en el árbol, manteniendo un contador para el nivel actual. Cuando el nivel actual coincide con el nivel deseado, se cuenta el nodo. Este proceso se repite para todos los nodos en el árbol.
+
+Precondiciones:
+El árbol debe ser un árbol binario de búsqueda.
+El nivel proporcionado debe ser un número válido dentro del árbol.
+
+Postcondiciones:
+Se cuenta la cantidad de nodos en el nivel especificado del árbol.
+
+Seudocódigo formal:
+
+Arbol
+ContarNodosEnNivel(Nivel)
+    SI raiz = NULL ENTONCES
+        RETORNAR 0
+    SINO 
+        RETORNAR raiz.ContarNodosEnNivel(0, nivel)
+    FIN SI
+FIN 
+
+Nodo
+ContarNodosEnNivel(Nivel, NivelActual) <- int
+    SI Nivel = NivelActual ENTONCES
+        RETORNAR 1
+    SINO
+        SI hijoIz <> NULL Y hijoDer <> NULL ENTONCES
+            RETORNAR hijoIz.ContarNodosEnNivel(Nivel, NivelActual + 1) + hijoDer.ContarNodosEnNivel(Nivel, NivelActual + 1)
+        FIN SI
+        SI hijoIz <> NULL ENTONCES
+            RETORNAR hijoIz.ContarNodosEnNivel(Nivel, NivelActual + 1)
+        FIN SI
+        SI hijoDer <> NULL ENTONCES
+            RETORNAR hijoDer.ContarNodosEnNivel(Nivel, NivelActual + 1)
+        FIN SI
+    FIN SI
+FIN
+
+Análisis detallado del orden del tiempo de ejecución: El tiempo de ejecución de este algoritmo es O(n), donde n es el número de nodos en el árbol. Esto se debe a que se visita cada nodo una vez para determinar si está en el nivel especificado y contarlos.
