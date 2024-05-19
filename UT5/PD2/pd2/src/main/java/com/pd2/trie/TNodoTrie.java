@@ -56,7 +56,7 @@ public class TNodoTrie implements INodoTrie {
         }
         nodo.esPalabra = true;
         for (int i : hojas) {
-            hojasDelLibro.add(i);
+            nodo.hojasDelLibro.add(i);
         }
     }
 
@@ -172,7 +172,7 @@ public class TNodoTrie implements INodoTrie {
                 return new LinkedList<Integer>();
             }
         }
-        return nodo.esPalabra ? hojasDelLibro : new LinkedList<Integer>();
+        return nodo.esPalabra ? nodo.hojasDelLibro : new LinkedList<Integer>();
     }
 
     
