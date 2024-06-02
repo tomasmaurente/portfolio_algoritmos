@@ -5,17 +5,17 @@ import java.util.ArrayList;
 import org.junit.Before;
 import org.junit.Test;
 
-public class AppTest 
-{
+public class AppTest {
     String[] claves = null;
     TArbolBB<TElementoAB> arbol = null;
     ArrayList<Comparable> etiquetas = null;
 
     @Before
-    public void setUp(){
+    public void setUp() {
         ManejadorArchivosGenerico lector = new ManejadorArchivosGenerico();
-        claves = lector.leerArchivo("C:\\Users\\Tomas\\Desktop\\Algoritmos\\portfolio_algoritmos\\UT4\\UT4_PD5\\pd5\\src\\main\\java\\com\\example\\claves\\clavesPrueba.txt");
-        
+        claves = lector.leerArchivo(
+                "C:\\Users\\Tomas\\Desktop\\Algoritmos\\portfolio_algoritmos\\UT4\\UT4_PD5\\pd5\\src\\main\\java\\com\\example\\claves\\clavesPrueba.txt");
+
         arbol = new TArbolBB<TElementoAB>();
         etiquetas = new ArrayList<Comparable>(12);
         Comparable etiqueta = null;
@@ -28,120 +28,111 @@ public class AppTest
     }
 
     @Test
-    public void etiquetaMenorEnArbolComplejo()
-    {
+    public void etiquetaMenorEnArbolComplejo() {
         TElementoAB aux = arbol.menorClave();
-        assertTrue(aux.getDatos().toString().equals( "1342"));
+        assertTrue(aux.getDatos().toString().equals("1342"));
         arbol.eliminar(aux.getEtiqueta());
         aux = arbol.menorClave();
-        assertTrue(aux.getDatos().toString().equals( "1383"));
+        assertTrue(aux.getDatos().toString().equals("1383"));
     }
 
     @Test
-    public void etiquetaMenorEnArbolSoloConHijosIzquierdos()
-    {
+    public void etiquetaMenorEnArbolSoloConHijosIzquierdos() {
         arbol.vaciar();
-        for (int clave = 10; clave > 0 ; clave--) {
+        for (int clave = 10; clave > 0; clave--) {
             Comparable etiqueta = clave;
             etiquetas.add(etiqueta);
             TElementoAB e = new TElementoAB<Integer>(etiqueta, clave);
             arbol.insertar(e);
         }
         TElementoAB aux = arbol.menorClave();
-        assertTrue(aux.getDatos().toString().equals( "1"));
+        assertTrue(aux.getDatos().toString().equals("1"));
         arbol.eliminar(aux.getEtiqueta());
         aux = arbol.menorClave();
-        assertTrue(aux.getDatos().toString().equals( "2"));
+        assertTrue(aux.getDatos().toString().equals("2"));
     }
 
     @Test
-    public void etiquetaMenorEnArbolSoloConHijosDerechos()
-    {
+    public void etiquetaMenorEnArbolSoloConHijosDerechos() {
         arbol.vaciar();
-        for (int clave = 0; clave < 10 ; clave++) {
+        for (int clave = 0; clave < 10; clave++) {
             Comparable etiqueta = clave;
             etiquetas.add(etiqueta);
             TElementoAB e = new TElementoAB<Integer>(etiqueta, clave);
             arbol.insertar(e);
         }
         TElementoAB aux = arbol.menorClave();
-        assertTrue(aux.getDatos().toString().equals( "0"));
+        assertTrue(aux.getDatos().toString().equals("0"));
         arbol.eliminar(aux.getEtiqueta());
         aux = arbol.menorClave();
-        assertTrue(aux.getDatos().toString().equals( "1"));
+        assertTrue(aux.getDatos().toString().equals("1"));
     }
 
     @Test
-    public void etiquetaMenorEnArbolVacioDebeDevolverNull()
-    {
+    public void etiquetaMenorEnArbolVacioDebeDevolverNull() {
         arbol.vaciar();
         TElementoAB aux = arbol.menorClave();
         assertTrue(aux == null);
     }
 
     /*
-     *  Mayor clave
+     * Mayor clave
      */
 
-     @Test
-    public void etiquetaMayorEnArbolComplejo()
-    {
+    @Test
+    public void etiquetaMayorEnArbolComplejo() {
         TElementoAB aux = arbol.mayorClave();
-        assertTrue(aux.getDatos().toString().equals( "10996"));
+        assertTrue(aux.getDatos().toString().equals("10996"));
         arbol.eliminar(aux.getEtiqueta());
         aux = arbol.mayorClave();
-        assertTrue(aux.getDatos().toString().equals( "10903"));
+        assertTrue(aux.getDatos().toString().equals("10903"));
     }
 
     @Test
-    public void etiquetaMayorEnArbolSoloConHijosIzquierdos()
-    {
+    public void etiquetaMayorEnArbolSoloConHijosIzquierdos() {
         arbol.vaciar();
-        for (int clave = 10; clave > 0 ; clave--) {
+        for (int clave = 10; clave > 0; clave--) {
             Comparable etiqueta = clave;
             etiquetas.add(etiqueta);
             TElementoAB e = new TElementoAB<Integer>(etiqueta, clave);
             arbol.insertar(e);
         }
         TElementoAB aux = arbol.mayorClave();
-        assertTrue(aux.getDatos().toString().equals( "10"));
+        assertTrue(aux.getDatos().toString().equals("10"));
         arbol.eliminar(aux.getEtiqueta());
         aux = arbol.mayorClave();
-        assertTrue(aux.getDatos().toString().equals( "9"));
+        assertTrue(aux.getDatos().toString().equals("9"));
     }
 
     @Test
-    public void etiquetaMayorEnArbolSoloConHijosDerechos()
-    {
+    public void etiquetaMayorEnArbolSoloConHijosDerechos() {
         arbol.vaciar();
-        for (int clave = 0; clave < 10 ; clave++) {
+        for (int clave = 0; clave < 10; clave++) {
             Comparable etiqueta = clave;
             etiquetas.add(etiqueta);
             TElementoAB e = new TElementoAB<Integer>(etiqueta, clave);
             arbol.insertar(e);
         }
         TElementoAB aux = arbol.mayorClave();
-        assertTrue(aux.getDatos().toString().equals( "9"));
+        assertTrue(aux.getDatos().toString().equals("9"));
         arbol.eliminar(aux.getEtiqueta());
         aux = arbol.mayorClave();
-        assertTrue(aux.getDatos().toString().equals( "8"));
+        assertTrue(aux.getDatos().toString().equals("8"));
     }
 
     @Test
-    public void etiquetaMayorEnArbolVacioDebeDevolverNull()
-    {
+    public void etiquetaMayorEnArbolVacioDebeDevolverNull() {
         arbol.vaciar();
         TElementoAB aux = arbol.mayorClave();
         assertTrue(aux == null);
     }
 
     /*
-     *  Obtener la cantidad de nodos de un nivel dado
+     * Obtener la cantidad de nodos de un nivel dado
      */
 
-     @Test
-     public void devuelveCantidadDeNodosDeUnNivel()
-     {
+    @Test
+    public void devuelveCantidadDeNodosDeUnNivel() {
         arbol.vaciar();
         int clave = 0;
         Comparable etiqueta = 6;
@@ -169,11 +160,10 @@ public class AppTest
         assertTrue(arbol.cantNodosNivel(1) == 1);
         assertTrue(arbol.cantNodosNivel(2) == 2);
         assertTrue(arbol.cantNodosNivel(3) == 4);
-     }
+    }
 
-     @Test
-    public void obtenerNodosNivelDevuelveNuloSiArbolEsVacio()
-    {
+    @Test
+    public void obtenerNodosNivelDevuelveNuloSiArbolEsVacio() {
         arbol.vaciar();
         Integer aux = arbol.cantNodosNivel(1);
         assertTrue(aux == null);
@@ -183,9 +173,8 @@ public class AppTest
      * Listas las hojas del arbol
      */
 
-     @Test
-     public void listarHojasDevuelveTodosLosNodos()
-     {
+    @Test
+    public void listarHojasDevuelveTodosLosNodos() {
         arbol.vaciar();
         int clave = 0;
         Comparable etiqueta = 6;
@@ -211,16 +200,15 @@ public class AppTest
         arbol.insertar(e);
 
         ArrayList<TElementoAB<TElementoAB>> lista = arbol.listarHojas();
-        assertTrue( lista.size() == 4);
-     }
+        assertTrue(lista.size() == 4);
+    }
 
-     /*
-      * Verificar si el arbol es de busqueda
-      */
-    
-      @Test
-     public void VerificarArbolDeBusqueda()
-     {
+    /*
+     * Verificar si el arbol es de busqueda
+     */
+
+    @Test
+    public void VerificarArbolDeBusqueda() {
         arbol.vaciar();
         int clave = 0;
         Comparable etiqueta = 6;
@@ -246,55 +234,46 @@ public class AppTest
         arbol.insertar(e);
 
         ArrayList<TElementoAB<TElementoAB>> lista = arbol.listarHojas();
-        assertTrue( lista.size() == 4 && arbol.esDeBusqueda());
-     }
+        assertTrue(lista.size() == 4 && arbol.esDeBusqueda());
+    }
 
-     @Test
-     public void VerificarArbolDeBusquedaDevuelveNullSiArbolVacio()
-     {
-        arbol.vaciar();        
-        assertTrue( arbol.esDeBusqueda() == null);
-     }
+    @Test
+    public void VerificarArbolDeBusquedaDevuelveNullSiArbolVacio() {
+        arbol.vaciar();
+        assertTrue(arbol.esDeBusqueda() == null);
+    }
 
-     /*
-      * Clave anterior
-      */
+    /*
+     * Clave anterior
+     */
 
-    
-      @Test
-      public void claveAnteriorDevuelveCorrectamente()
-      {
-          TElementoAB aux = arbol.calveAnterior(claves[0]);
-          assertTrue(aux.getEtiqueta().toString().equals( "4734" ));
-          arbol.eliminar(aux.getEtiqueta());
-          aux = arbol.calveAnterior(aux.getEtiqueta());
-          assertTrue(aux.getDatos().toString().equals( "4345"));
-      }
+    @Test
+    public void claveAnteriorDevuelveCorrectamente() {
+        TElementoAB aux = arbol.calveAnterior(claves[0]);
+        assertTrue(aux.getEtiqueta().toString().equals("4734"));
+        arbol.eliminar(aux.getEtiqueta());
+        aux = arbol.calveAnterior(aux.getEtiqueta());
+        assertTrue(aux.getDatos().toString().equals("4345"));
+    }
 
-      @Test
-      public void claveAnteriorDevuelveNullSiVacio()
-      {
-          arbol.vaciar();
-          TElementoAB aux = arbol.calveAnterior(etiquetas.get(0));
-          assertTrue(aux == null);
-      }
+    @Test
+    public void claveAnteriorDevuelveNullSiVacio() {
+        arbol.vaciar();
+        TElementoAB aux = arbol.calveAnterior(etiquetas.get(0));
+        assertTrue(aux == null);
+    }
 
-      @Test
-      public void claveAnteriorDevuelveNuloSiNoHayClavesMenores()
-      {
+    @Test
+    public void claveAnteriorDevuelveNuloSiNoHayClavesMenores() {
         TElementoAB aux = arbol.calveAnterior(etiquetas.get(5));
-          assertTrue(aux == null);
-      }
+        assertTrue(aux == null);
+    }
 
-      @Test
-      public void claveAnteriorDevuelveElMayorNodoSiClaveMayorATodosLosNodos()
-      {
+    @Test
+    public void claveAnteriorDevuelveElMayorNodoSiClaveMayorATodosLosNodos() {
         Comparable e = 10000000;
         TElementoAB aux = arbol.calveAnterior(e);
-          assertTrue(aux.getEtiqueta().compareTo(10996
-          ) == 0);
-      }
-
-
+        assertTrue(aux.getEtiqueta().compareTo(10996) == 0);
+    }
 
 }
