@@ -1,0 +1,36 @@
+Lenguaje Natural:
+
+Recibo la clave y le aplico la función de hashing. Me fijo si en mi tabla hash el lugar contiene una clave y coincide con la solicitada, finalizo la busqueda, si no coincide continuo recorriendo cuadraticamente. Si en algun punto encuentro un lugar vacio o con clave coincidente, finalizo la busqueda.
+
+Precondiciones:
+- Tengo tabla hash no llena
+- Tengo una clave entera para buscar
+
+Postcondiciones:
+- Retorno la cantidad de intentos para la busqueda
+
+Pseudocódigo:
+
+COM
+
+de Tipo Hash buscar(de Tipo Entero unaClave): devuelve de Tipo Entero
+	ubicacion <- hashing(unaClave)
+	i <- 0
+	Mientras (i<tamanio)
+		Si (vectorDeClaves[ubicacion] = nulo)
+			devolver i
+		FinSi
+		Si (vectorDeClaver[ubicacion] = unaClave)
+			devolver i
+		FinSi
+		
+		i <- i+1
+		ubicacion <- (ubicacion + 2i - 1)mod(tamanio)
+	FinMientras
+	
+
+FIN
+
+Analisis del tiempo de ejecucion:
+
+Dado que el algoritmo recorre circularmente el array cuadraticamente y si garantizamos la carga del hash sea menor al 50% y que el tamaño del mismo sea un primo, podemos garantizar que la insercion va a recorrer, en el peor de los casos todo el array. Como cada vez que llega a un espacio ejecuta una cantidad de ejecuciones constantes, se concluye que el orden del tiempo de ejecucion el algoritmo es de O(N)

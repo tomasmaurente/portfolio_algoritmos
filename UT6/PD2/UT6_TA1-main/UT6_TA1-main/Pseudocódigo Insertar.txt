@@ -1,0 +1,36 @@
+Lenguaje Natural:
+
+Recibo la clave y le aplico la función de hashing. Me fijo si en mi tabla hash el lugar se encuentra ocupado. Si no lo esta, inserto la clave allí, si se encuentra ocupado, intento insertar secuencialmente de forma cuadrática. Llevo un recuento de la cantidad de intentos.
+
+Precondiciones:
+- Tengo tabla hash no llena
+- Tengo una clave entera para insertar
+
+Postcondiciones:
+- La clave fue insertada en la tabla hash en un lugar vacío
+- Retorno la cantidad de intentos de inserción
+
+Pseudocódigo:
+
+COM
+
+de Tipo Hash insertar(de Tipo Entero unaClave): devuelve de Tipo Entero
+	ubicacion <- hashing(unaClave)
+	i <- 0
+	Mientras (i<tamanio)
+		Si (vectorDeClaves[ubicacion] = nulo)
+			vectorDeClaves[ubicacion] <- unaClave
+			carga <- carga + 1
+			devolver i
+		FinSi
+		i <- i+1
+		ubicacion <- (ubicacion + 2i - 1)mod(tamanio)
+	FinMientras
+	
+
+FIN
+
+Analisis del tiempo de ejecucion:
+
+Dado que el algoritmo recorre circularmente el array cuadraticamente y si garantizamos la carga del hash sea menor al 50% y que el tamaño del mismo sea un primo, podemos garantizar que la insercion va a recorrer, en el peor de los casos todo el array. Como cada vez que llega a un espacio ejecuta una cantidad de ejecuciones constantes, se concluye que el orden del tiempo de ejecucion el algoritmo es de O(N)
+	

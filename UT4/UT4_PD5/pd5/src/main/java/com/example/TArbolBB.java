@@ -111,7 +111,7 @@ public class TArbolBB<T> implements IArbolBB<T> {
     @Override
     public void eliminar(Comparable unaEtiqueta) {
         if (!esVacio()) {
-            raiz.eliminar(unaEtiqueta);
+            raiz = raiz.eliminar(unaEtiqueta);
         }
     }
 

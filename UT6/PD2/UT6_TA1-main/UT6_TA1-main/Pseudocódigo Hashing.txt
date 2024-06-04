@@ -1,0 +1,31 @@
+Pseudo Codigo
+
+Lenguaje Natural 
+
+de tipo THash hashing(de tipo int entrada): devuelve de tipo int 
+
+El método calculara el numero hash para utilizar como índice en la inserción hash. El método calculara el la salida simplemente haciendo el modulo del tamaño del array.
+
+Precondiciones
+
+- El numero ingresado debe ser un entero 
+- El array debe estar previamente definido y se debe conocer su tamaño
+
+Postcondiciones
+
+- El numero devuelto será uno existente entre 0 y el tamaño del array o -1 en caso de que la entrada no haya sido correcta
+- El numero devuelto será un entero
+
+Psudocodigo
+
+de tipo THash hashing(de tipo int entrada): devuelve de tipo int 
+COMINEZA
+SI (entrada == null) 
+	DEVOLVER -1
+SINO 
+	DEVOLVER entrada % array.size
+FIN SI
+FIN
+
+Orden del método
+El método es de orden constante ya que dentro de cada "SI" solamente existe una sentencia de orden constante.

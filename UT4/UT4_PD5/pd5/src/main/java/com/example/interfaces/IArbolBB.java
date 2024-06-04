@@ -102,7 +102,7 @@ public interface IArbolBB<T> {
     public ArrayList<TElementoAB<T>> listarHojas();
 
     /**
-     * verifica que el arbol sea de busqueda.
+     * verifica que el arbol sea de busqueda, null si es vacio.
      * 
      * @return Cantidad de nodos de un nivel pasado por paramentro.
      */

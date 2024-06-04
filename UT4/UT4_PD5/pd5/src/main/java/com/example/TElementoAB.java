@@ -1,7 +1,6 @@
 package com.example;
 
 import java.util.ArrayList;
-
 import com.example.interfaces.IElementoAB;
 
 public class TElementoAB<T> implements IElementoAB<T> {
@@ -211,13 +210,13 @@ public class TElementoAB<T> implements IElementoAB<T> {
         if (unaEtiqueta == null) {
             return null;
         }
-        if (etiqueta.compareTo(unaEtiqueta) < 0 ) {      // Busco el nodo a eliminar en los mas pequeños
+        if (etiqueta.compareTo(unaEtiqueta) > 0 ) {      // Busco el nodo a eliminar en los mas pequeños
             if (hijoIzq != null){
                 hijoIzq = hijoIzq.eliminar(unaEtiqueta);
             }
             return this;
 
-        } else if (etiqueta.compareTo(unaEtiqueta) > 0 ) {    // Busco el nodo a eliminar en los mas pequeños
+        } else if (etiqueta.compareTo(unaEtiqueta) < 0 ) {    // Busco el nodo a eliminar en los mas pequeños
             if (hijoDer != null){
                 hijoDer = hijoDer.eliminar(unaEtiqueta);
             }
@@ -258,13 +257,28 @@ public class TElementoAB<T> implements IElementoAB<T> {
 
     @Override
     public TElementoAB<T> calveAnterior(Comparable clave) {
-        if (hijoIzq != null){
+        if (clave == null) {
+            return null;
+        }
+        if (etiqueta.compareTo(clave) > 0 ) {      // Busco el nodo a eliminar en los mas pequeños
+            if (hijoIzq != null){
+                return hijoIzq.calveAnterior(clave);
+            }
+            return null;
+
+        } else if (etiqueta.compareTo(clave) < 0 ) {    // Busco el nodo a eliminar en los mas pequeños
+            if (hijoDer != null){
+                return hijoDer.calveAnterior(clave);
+            }
+            return this;
+        
+        } else if ( hijoIzq != null){
             TElementoAB<T> nodo = hijoIzq;
             while (nodo.hijoDer != null) {
                 nodo = nodo.hijoDer;
             }
             return nodo;
-        }
+        } 
         return null;
     }
 
@@ -321,7 +335,7 @@ public class TElementoAB<T> implements IElementoAB<T> {
             Boolean iz = true;
             Boolean der= true;
             if( hijoIzq != null){
-                if ( etiqueta.compareTo(hijoIzq.getEtiqueta()) < 0 ){
+                if ( etiqueta.compareTo(hijoIzq.getEtiqueta()) > 0 ){
                     iz = hijoIzq.esDeBusqueda();
                 } else {
                     return false;
@@ -329,7 +343,7 @@ public class TElementoAB<T> implements IElementoAB<T> {
             }
             
             if( hijoDer != null){
-                if ( etiqueta.compareTo(hijoDer.getEtiqueta()) > 0 ){
+                if ( etiqueta.compareTo(hijoDer.getEtiqueta()) < 0 ){
                     der = hijoDer.esDeBusqueda();
                 } else {
                     return false;

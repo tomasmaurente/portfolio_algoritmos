@@ -105,7 +105,9 @@ No afectará la estructura del árbol.
 
 3. Descripción en lenguaje natural de los casos de prueba correspondientes a cada operación:
 Se creará un árbol con claves específicas y se buscará la clave inmediata anterior a una clave dada.
-Se creará un árbol vacío y se intentará buscar la clave inmediata anterior a una clave dada.
+Se creará un árbol vacío y se intentará buscar la clave inmediata anterior a una clave dada, el resultado debe ser nulo.
+El resultado de buscar una clave menor a la menor clave del arbol sera null.
+El resultado de una busqueda de una clave mayor a la mayor del arbol sera el nodo de mayor clave
 
 4. Escritura del algoritmo en seudocódigo formal:
 FUNCION obtenerClaveAnterior(clave: Entero) -> TElementoABB
@@ -147,6 +149,7 @@ Postcondiciones:
 
 Devolverá la cantidad de nodos en el nivel dado.
 No afectará la estructura del árbol.
+
 
 3. Descripción en lenguaje natural de los casos de prueba correspondientes a cada operación:
 Se creará un árbol con nodos en diferentes niveles y se contará la cantidad de nodos en un nivel específico.
@@ -228,7 +231,7 @@ Este algoritmo verifica si un árbol binario dado es un árbol de búsqueda. Rea
 2. Identificación de precondiciones y postcondiciones correspondientes:
 Precondiciones:
 
-Devolverá true si no existe una raíz.
+Devolverá null si no existe una raíz.
 El árbol deberá ser un árbol binario.
 Las claves deben ser numericas
 
