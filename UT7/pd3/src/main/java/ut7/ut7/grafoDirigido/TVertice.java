@@ -1,13 +1,13 @@
-package ut7.grafoDirigido;
+package ut7.ut7.grafoDirigido;
 
 import java.util.Collection;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Stack;
 
-import ut7.Interfaces.IVertice;
-import ut7.utils.TCamino;
-import ut7.utils.TCaminos;
+import ut7.ut7.Interfaces.IVertice;
+import ut7.ut7.utils.TCamino;
+import ut7.ut7.utils.TCaminos;
 
 public class TVertice<T> implements IVertice {
 

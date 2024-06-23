@@ -1,4 +1,4 @@
-package ut7.grafoDirigido;
+package ut7.ut7.grafoDirigido;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -10,9 +10,9 @@ import java.util.Map;
 import java.util.Set;
 import java.util.Stack;
 import java.util.TreeMap;
-import ut7.Interfaces.IGrafoDirigido;
-import ut7.utils.TCamino;
-import ut7.utils.TCaminos;
+import ut7.ut7.Interfaces.IGrafoDirigido;
+import ut7.ut7.utils.TCamino;
+import ut7.ut7.utils.TCaminos;
 
 public class TGrafoDirigido implements IGrafoDirigido {
 

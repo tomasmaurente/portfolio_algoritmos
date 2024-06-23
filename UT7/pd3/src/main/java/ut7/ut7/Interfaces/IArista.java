@@ -1,4 +1,4 @@
-package ut7.Interfaces;
+package ut7.ut7.Interfaces;
 
 public interface IArista {
 

@@ -1,10 +1,10 @@
-package ut7;
+package ut7.ut7;
 
 import java.util.Collection;
 
-import ut7.grafoDirigido.TGrafoDirigido;
-import ut7.grafoDirigido.UtilGrafos;
-import ut7.utils.TCaminos;
+import ut7.ut7.grafoDirigido.TGrafoDirigido;
+import ut7.ut7.grafoDirigido.UtilGrafos;
+import ut7.ut7.utils.TCaminos;
 
 public class PruebaGrafo {
 

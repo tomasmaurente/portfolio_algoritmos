@@ -1,6 +1,6 @@
-package ut7.grafoDirigido;
+package ut7.ut7.grafoDirigido;
 
-import ut7.Interfaces.IAdyacencia;
+import ut7.ut7.Interfaces.IAdyacencia;
 
 public class TAdyacencia implements IAdyacencia {
    
