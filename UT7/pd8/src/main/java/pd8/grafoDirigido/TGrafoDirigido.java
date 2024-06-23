@@ -3,9 +3,12 @@ package pd8.grafoDirigido;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
+import java.util.Stack;
 import java.util.TreeMap;
 
 import pd8.Interfaces.IGrafoDirigido;
@@ -360,6 +363,100 @@ public class TGrafoDirigido implements IGrafoDirigido {
                 vertice.cantDescendientes();
             }
         }
+    }
+
+    public LinkedList<String> ordenParcial() {
+        if (tieneCiclos()){
+            return null;
+        }
+
+        Stack<TVertice> pila = new Stack<>();
+        LinkedList<String> resultado = new LinkedList<String>();
+        desvisitarVertices();
+
+        for (TVertice vertice : vertices.values()) {
+            if (!vertice.getVisitado()) {
+                vertice.ordenParcial(pila, resultado);
+            }
+        }
+
+        return resultado;
+    }
+
+    public Boolean tieneCiclos() {
+        Set<TVertice> caminoActual = new HashSet<>();
+        
+        desvisitarVertices();
+        
+        for (TVertice vertice : vertices.values()) {
+            if (tieneCiclos(vertice, caminoActual)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private Boolean tieneCiclos(TVertice vertice, Set<TVertice> caminoActual) {
+        if (caminoActual.contains(vertice)) {
+            return true;  // Se encontró un ciclo
+        }
+        if (vertice.getVisitado()) {
+            return false; // Ya se visitó este vértice y no hay ciclo en su rama
+        }
+
+        vertice.setVisitado(true);
+        caminoActual.add(vertice);
+
+        for (TAdyacencia adyacente : (LinkedList<TAdyacencia>) vertice.getAdyacentes()) {
+            TVertice vertAdy = adyacente.getDestino();
+            if (tieneCiclos(vertAdy, caminoActual)) {
+                return true;
+            }
+        }
+
+        caminoActual.remove(vertice);
+        return false;
+    }
+
+    public List<String> ordenTopologico() {
+        Stack<TVertice> pila = new Stack<>();
+        desvisitarVertices();
+
+        for (TVertice vertice : vertices.values()) {
+            if (!vertice.getVisitado()) {
+                if (!ordenTopologicoDFS(vertice, pila)) {
+                    throw new IllegalArgumentException("El grafo no es un DAG (tiene ciclos)");
+                }
+            }
+        }
+
+        List<String> ordenacion = new ArrayList<>();
+        while (!pila.isEmpty()) {
+            ordenacion.add(pila.pop().getEtiqueta().toString());
+        }
+
+        return ordenacion;
+    }
+
+    private boolean ordenTopologicoDFS(TVertice vertice, Stack<TVertice> pila) {
+        vertice.setVisitado(true);
+        vertice.setProcesado(true);
+
+        for (TAdyacencia adyacente : (LinkedList<TAdyacencia>) vertice.getAdyacentes()) {
+            TVertice verticeAdyacente = adyacente.getDestino();
+            if (verticeAdyacente.isProcesado()) {
+                return false; // Se encontró un ciclo
+            }
+            if (!verticeAdyacente.getVisitado()) {
+                if (!ordenTopologicoDFS(verticeAdyacente, pila)) {
+                    return false;
+                }
+            }
+        }
+
+        vertice.setProcesado(false);
+        pila.push(vertice);
+        return true;
     }
 
 }

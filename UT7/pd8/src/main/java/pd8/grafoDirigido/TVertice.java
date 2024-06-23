@@ -3,6 +3,7 @@ package pd8.grafoDirigido;
 import java.util.Collection;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Stack;
 
 import pd8.Interfaces.IVertice;
 import pd8.utils.TCamino;
@@ -13,6 +14,7 @@ public class TVertice<T> implements IVertice {
     private final Comparable etiqueta;
     private LinkedList<TAdyacencia> adyacentes;
     private boolean visitado;
+    private boolean procesado;
     private T datos;
     private int numBpf = 0;
     private int cantidadDesc;
@@ -30,6 +32,14 @@ public class TVertice<T> implements IVertice {
         this.etiqueta = unaEtiqueta;
         adyacentes = new LinkedList();
         visitado = false;
+    }
+
+    public void setProcesado(boolean b) {
+        this.procesado = b;
+    }
+
+    public Boolean isProcesado() {
+        return this.procesado;
     }
 
     public void setVisitado(boolean valor) {
@@ -187,4 +197,32 @@ public class TVertice<T> implements IVertice {
         return descendientes + 1;
     }
 
+    public void ordenParcial(Stack<TVertice> visitados, LinkedList<String> resultado) {
+        setVisitado(true);
+        setProcesado(true);
+
+        for (TAdyacencia adyacente : getAdyacentes()) {
+            TVertice verticeAdyacente = adyacente.getDestino();
+            if (!verticeAdyacente.getVisitado()) {
+                verticeAdyacente.ordenParcial(visitados, resultado);
+            }
+        }
+
+        setProcesado(false);
+        visitados.push(this); 
+        resultado.addFirst(this.etiqueta.toString());
+    }
+
+    public Boolean tieneCiclos() {
+        setVisitado(true);
+        for (TAdyacencia adyacente : adyacentes) {
+            TVertice vertAdy = adyacente.getDestino();
+            if (!vertAdy.getVisitado()) {
+                return vertAdy.tieneCiclos();
+            } else {
+                return true;
+            }
+        }
+        return false;
+    }
 }
