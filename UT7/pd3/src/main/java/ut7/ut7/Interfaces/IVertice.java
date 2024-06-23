@@ -1,8 +1,8 @@
-package ut7.Interfaces;
+package ut7.ut7.Interfaces;
 
 import java.util.LinkedList;
-import ut7.grafoDirigido.TAdyacencia;
-import ut7.grafoDirigido.TVertice;
+import ut7.ut7.grafoDirigido.TAdyacencia;
+import ut7.ut7.grafoDirigido.TVertice;
 
 public interface IVertice {
 

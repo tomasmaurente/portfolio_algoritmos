@@ -1,4 +1,4 @@
-package ut7.utils;
+package ut7.ut7.utils;
 
 import java.util.Collection;
 import java.util.LinkedList;

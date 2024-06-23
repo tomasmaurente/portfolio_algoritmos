@@ -1,4 +1,4 @@
-package ut7.grafoDirigido;
+package ut7.ut7.grafoDirigido;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -7,9 +7,8 @@ import java.util.Map;
 import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-
-import ut7.Interfaces.IGrafoDirigido;
-import ut7.utils.ManejadorArchivosGenerico;
+import ut7.ut7.Interfaces.IGrafoDirigido;
+import ut7.ut7.utils.ManejadorArchivosGenerico;
 
 public class UtilGrafos {
 

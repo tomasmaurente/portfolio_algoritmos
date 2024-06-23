@@ -1,8 +1,8 @@
-package ut7.Interfaces;
+package ut7.ut7.Interfaces;
 
 import java.util.Map;
-import ut7.grafoDirigido.TArista;
-import ut7.grafoDirigido.TVertice;
+import ut7.ut7.grafoDirigido.TArista;
+import ut7.ut7.grafoDirigido.TVertice;
 
 
 public interface IGrafoDirigido {

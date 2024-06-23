@@ -1,11 +1,11 @@
-package ut7.utils;
+package ut7.ut7.utils;
 
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.LinkedList;
 
-import ut7.grafoDirigido.TAdyacencia;
-import ut7.grafoDirigido.TVertice;
+import ut7.ut7.grafoDirigido.TAdyacencia;
+import ut7.ut7.grafoDirigido.TVertice;
 
 public class TCamino {
 
